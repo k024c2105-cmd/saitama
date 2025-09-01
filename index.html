@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>埼玉県紹介ページ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="lang-buttons">
+    <button onclick="translateTo('ja')">日本語</button>
+    <button onclick="translateTo('ko')">한국어</button>
+    <button onclick="translateTo('zh-CN')">中文</button>
+    <button onclick="translateTo('en')">English</button>
+</div>
+
+  <main>
+    <section id="top" class="spot">
+      <div class="spot-title">
+        <h1>埼玉県 トップページ</h1>
+      </div>
+      <h2>埼玉県の人気スポットやお店を都市ごとに紹介しています。各リンクから詳細ページへジャンプできます。</h2>
+      <h2>※このサイトで使われている画像は全てCHATGPTにて生成されたイメージ画像です。</h2>
+
+<ul class="spot-list">
+  <li>
+    <a href="秩父市/chichibu_copy.html"><h2>秩父市</h2></a>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.392593702607!2d139.08560741526186!3d35.991508980119084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018e1c63f6b2a43%3A0x1d44a50b9f80709d!2z5pel5pys5biC!5e0!3m2!1sja!2sjp!4v1693562880000!5m2!1sja!2sjp"
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </li>
+
+  <li>
+    <a href="川越市/toppage/川越市.html"><h2>川越市</h2></a>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.512409427009!2d139.4823812152601!3d35.92500338013774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018dcd7d3c1c3b5%3A0x2e4d44e940b8c3d3!2z5bed5Y-j5biC!5e0!3m2!1sja!2sjp!4v1693562900000!5m2!1sja!2sjp"
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </li>
+
+  <li>
+    <a href="GUAN WENYUE/峡山茶.html"><h2>狭山市</h2></a>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.1503091230644!2d139.41370881526052!3d35.93487658013534!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018d40e8a4768ad%3A0x7c70b8575b7cfc1c!2z5bO25bGx5biC!5e0!3m2!1sja!2sjp!4v1693562920000!5m2!1sja!2sjp"
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </li>
+
+  <li>
+    <a href="熊谷/kumagaya.html"><h2>熊谷市</h2></a>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3236.123618258317!2d139.38875161526462!3d36.14728368009665!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018db1ee9b7122d%3A0x9d4020f994a1a4d5!2z6bOl5bmz5biC!5e0!3m2!1sja!2sjp!4v1693562940000!5m2!1sja!2sjp"
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </li>
+</ul>
+
+    </section>
+  </main>
+
+  <svg id="mgtm-svg" viewBox="0 0 200 100">
+    <defs>
+      <path id="mgtm-path" d="M 12.5 0
+            c 5 -12.5 -17.5 -17.5 -25 0
+            c 2.5 -6.25 10 -6.25 12.5 0
+            c 2.5 6.25 10 6.25 12.5 0 Z" fill="#d04" stroke="white" stroke-width="0.2px" />
+    </defs>
+    <g id="mgtm-rotator">
+      <g id="mgtm-group" transform="translate(100,50)"></g>
+    </g>
+  </svg>
+
+  <script>
+    const rotator = document.getElementById('mgtm-rotator');
+    const o = document.getElementById('mgtm-group');
+    const radius = 80;
+
+    for (let i = 0; i < 16; i++) {
+      let pair = (i % 2 === 1);
+      const angle = i * 360 / 16 - pair * 15;
+      const rad = angle * (Math.PI / 180);
+      const x = radius * Math.cos(rad);
+      const y = radius * Math.sin(rad);
+      let transform = `translate(${x}, ${y}) rotate(${angle + pair * 15}) rotate(${pair * 180})`;
+
+      const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#mgtm-path');
+      use.setAttribute('transform', transform);
+      o.appendChild(use);
+    }
+
+    let lastScrollY = window.scrollY;
+    let rotation = 0;
+    window.addEventListener('scroll', () => {
+      const delta = window.scrollY - lastScrollY;
+      rotation -= delta * 0.05;
+      rotator.style.transform = `rotate(${rotation}deg)`;
+      lastScrollY = window.scrollY;
+    });
+  </script>
+
+  <div id="google_translate_element" style="display: none;"></div>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'ja',
+        includedLanguages: 'ja,ko,zh-CN,en'
+      }, 'google_translate_element');
+    }
+    function translateTo(lang) {
+      const select = document.querySelector("select.goog-te-combo");
+      if (select) {
+        select.value = lang;
+        select.dispatchEvent(new Event("change"));
+      }
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <footer>
+  <h3>Powered by <a href="https://translate.google.com/" target="_blank">Google 翻訳</a></h3>
+</footer>
+</body>
+</html>

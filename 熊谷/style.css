@@ -1,0 +1,210 @@
+/* 全体の基本設定 */
+body {
+  font-family: "Yu Gothic", "Hiragino Kaku Gothic ProN", sans-serif;
+  color: #2e2e2e;
+  line-height: 1.8;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  height: 200vh;
+  background: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeBlend mode='screen'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+/* ヘッダー */
+#navbar {
+  position: fixed;
+  top: 0;
+  height: 50vh;
+  width: 100%;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #d04;
+  transition: 0.3s ease;
+}
+
+#navbar.shrink {
+  height: 15vh;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logo {
+  margin-left: 50px;
+  font-size: 80px;
+  font-weight: bold;
+  font-family: serif;
+  color: white;
+}
+
+#navbar.shrink .logo {
+  font-size: 40px;
+  font-weight: normal;
+  font-family: sans-serif;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+#navbar.shrink .nav-links {
+  margin-right: 50px;
+}
+
+.nav-links>li {
+  background-color: white;
+}
+
+header {
+  background: linear-gradient(90deg, #8ca88c, #a8c3a1);
+  color: white;
+  text-align: center;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  font-weight: bold;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 2.5em;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+  font-size: 1.2em;
+}
+
+/* メインセクション */
+main {
+  z-index: 2000;
+  max-width: 1000px;
+  padding-top: 50vh;
+}
+
+
+/* 言語切替ボタン */
+.lang-buttons {
+  position: fixed;
+  z-index: 4000;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+  padding: 10px 20px;
+  background-color: #ddd;
+}
+
+.lang-buttons button {
+  background-color: #eee;
+  border: 1px solid #ccc;
+  color: #d04;
+  padding: 6px 12px;
+  margin-left: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.lang-buttons button:hover {
+  background-color: #d041;
+}
+
+
+/* 観光スポット */
+.spot {
+  background-color: #ffffff;
+  border-left: 6px solid #d048;
+  margin-bottom: 40px;
+  padding: 25px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.spot-title {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #804;
+  margin-bottom: 15px;
+}
+
+.spot-title h2 {
+  font-size: 1.6em;
+  margin: 0;
+}
+
+.spot-image {
+  width: 60%;
+  max-height: 800px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 食べ歩きリスト */
+.spot ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.spot li {
+  margin-bottom: 20px;
+}
+
+/* サイドバー */
+.sidebar-left {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  margin: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* ボタン間の隙間 */
+}
+
+.sidebar-button {
+  background-color: #d04;
+  color: white;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.sidebar-button:hover {
+  background-color: #d04;
+}
+
+/* Google翻訳非表示要素 */
+.notranslate {
+  unicode-bidi: isolate;
+}
+
+#mgtm-svg {
+  z-index: 900;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+#mgtm-rotator {
+  transition: transform 0.3s ease-out;
+  transform-origin: center;
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>旧山崎家別邸</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 言語切替ボタン -->
+  <div class="lang-buttons">
+    <button onclick="translateTo('ja')">日本語</button>
+    <button onclick="translateTo('ko')">한국어</button>
+    <button onclick="translateTo('zh-CN')">中文</button>
+    <button onclick="translateTo('en')">English</button>
+  </div>
+
+  <!-- Google翻訳ウィジェット（非表示） -->
+  <div id="google_translate_element" style="display:none;"></div>
+
+  <main>
+    <!-- 基本情報 -->
+    <section id="info" class="spot">
+      <div class="spot-title">
+        <h2>旧山崎家別邸 基本情報</h2>
+      </div>
+      <ul>
+        <li><h3>所在地：埼玉県川越市松江町2-7-8</h3></li>
+        <li><h3>郵便番号：350-0056</h3></li>
+        <li><h3>電話番号：049-224-5940（川越市観光課）</h3></li>
+        <li><h3>営業時間：9:00～17:00（最終入館16:30）</h3></li>
+        <li><h3>定休日：月曜日（祝日の場合は翌日）、年末年始</h3></li>
+        <li><h3>入館料：100円（中学生以下無料）</h3></li>
+      </ul>
+    </section>
+
+    <!-- アクセス -->
+    <section id="access" class="spot">
+      <div class="spot-title">
+        <h2>アクセス</h2>
+      </div>
+
+      <div class="access-container">
+        <!-- 左側：アクセスの文章 -->
+        <ul class="access-info">
+          <li><h3>西武新宿線「本川越駅」から徒歩約15分</h3></li>
+          <li><h3>東武東上線・JR川越線「川越駅」からバス約7分、「札の辻」下車 徒歩約3分</h3></li>
+        </ul>
+
+        <!-- 右側：Googleマップ -->
+        <div class="access-map">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.521790086246!2d139.48173051525852!3d35.92367348014017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6018d92d8d67c6a7%3A0xa4e55d7d5b6d5c22!2z5p2x5bGx5a6u5aSn5a2m6YCa!5e0!3m2!1sja!2sjp!4v1699941111111!5m2!1sja!2sjp" 
+            width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+          </iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <svg id="mgtm-svg" viewBox="0 0 200 100">
+    <defs>
+      <path id="mgtm-path" d="M 12.5 0
+            c 5 -12.5 -17.5 -17.5 -25 0
+            c 2.5 -6.25 10 -6.25 12.5 0
+            c 2.5 6.25 10 6.25 12.5 0 Z" fill="#d04" stroke="white" stroke-width="0.2px" />
+    </defs>
+    <g id="mgtm-rotator">
+      <g id="mgtm-group" transform="translate(100,50)"></g>
+    </g>
+  </svg>
+
+  <script>
+    const scrollSnap = 10;
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > scrollSnap - 1) {
+        navbar.classList.add('shrink');
+      } else {
+        navbar.classList.remove('shrink');
+      }
+    });
+
+    const rotator = document.getElementById('mgtm-rotator');
+    const o = document.getElementById('mgtm-group');
+    const radius = 80;
+
+    for (let i = 0; i < 16; i++) {
+      let pair = (i % 2 === 1);
+      const angle = i * 360 / 16 - pair * 15;
+      const rad = angle * (Math.PI / 180);
+      const x = radius * Math.cos(rad);
+      const y = radius * Math.sin(rad);
+      let transform = `translate(${x}, ${y}) rotate(${angle + pair * 15}) rotate(${pair * 180})`;
+
+      const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#mgtm-path');
+      use.setAttribute('transform', transform);
+      o.appendChild(use);
+    }
+
+    let lastScrollY = window.scrollY;
+    let rotation = 0;
+    window.addEventListener('scroll', () => {
+      const delta = window.scrollY - lastScrollY;
+      rotation -= delta * 0.05;
+      rotator.style.transform = `rotate(${rotation}deg)`;
+      lastScrollY = window.scrollY;
+    });
+  </script>
+
+  <div id="google_translate_element" style="display: none;"></div>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'ja',
+        includedLanguages: 'ja,ko,zh-CN,en',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+
+    function translateTo(lang) {
+      const select = document.querySelector("select.goog-te-combo");
+      if (select) {
+        select.value = lang;
+        select.dispatchEvent(new Event("change"));
+      } else {
+        setTimeout(() => translateTo(lang), 500);
+      }
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
+

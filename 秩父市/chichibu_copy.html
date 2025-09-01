@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>秩父市の名物紹介</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <nav id="navbar">
+    <div class="logo">埼玉県</div>
+    <div class="title">
+      <h1>秩父市</h1>
+      <p>埼玉県西部に位置する、自然と伝統文化が息づく都市</p>
+    </div>
+
+  </nav>
+
+  <div id="google_translate_element"></div>
+
+  <div class="lang-buttons">
+    <button onclick="translateTo('ja')">日本語</button>
+    <button onclick="translateTo('ko')">한국어</button>
+    <button onclick="translateTo('zh-CN')">中文</button>
+    <button onclick="translateTo('en')">English</button>
+  </div>
+
+  <main>
+    <section class="spot">
+      <img class="spot-image" src="蕎麦作り体験.png" alt="蕎麦作り体験" />
+      <div class="spot-info">
+        <h2>蕎麦作り体験</h2>
+        <p>
+          秩父の蕎麦は地粉を使っている。「地粉」とは、秩父周辺でとれたそばの実を自家製粉した粉で香りが強くて風味豊か！つなぎを少なくして、そばの味がしっかり。地元のそば粉を使って、粉から練り、のばし、切って、茹でて食べるまでを体験。「和食文化」を自分の手で体験できる貴重な機会！！施設によっては英語対応あり・通訳付きコースも。
+        </p>
+      </div>
+    </section>
+
+    <section class="spot">
+      <a href="味噌ポテト.png">
+        <img class="spot-image" src="味噌ポテト.png" alt="味噌ポテトの画像" />
+      </a>
+      <div class="spot-info">
+        <h2>味噌ポテト</h2>
+        <p>
+          ふかしたジャガイモに衣をつけて揚げ、甘い味噌だれをかけたB級グルメ。外国人にとっては「スイートポテトのような、でも和風ソース！」とユニークな体験ができるグルメ。
+        </p>
+      </div>
+    </section>
+
+    <section class="spot">
+      <a href="spot3.html">
+        <img class="spot-image" src="豚みそ丼.png" alt="豚みそ丼の画像" />
+      </a>
+      <div class="spot-info">
+        <h2>豚みそ丼本舗 野さか</h2>
+        <p>
+          炭火で焼いた国産豚肉に、甘辛の味噌ダレをたっぷり絡めた「豚みそ丼」が看板メニュー。丼はごはんの上に分厚い豚肉が何枚も重なり、見た目もボリュームも満点！味噌は秩父の地元の味を活かしたもので、日本の田舎らしさを味わえる。
+        </p>
+      </div>
+    </section>
+
+    <section class="spot">
+      <a href="spot4.html">
+      </a>
+      <div class="spot-info">
+        <h2>長瀞ライン下り</h2>
+        <p>
+          秩父屈指の名所「荒川渓谷」を伝統的な和舟でゆったり下る人気アクティビティ。自然の美しさとスリルを両方味わえる絶好の体験スポット。岩畳は写真映えスポットで、春は桜、秋は紅葉が絶景！木製の和舟を船頭さんが竿一本で操って下ります。冬は船にこたつが設置され、暖かく快適に冬景色を楽しめます。
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SVG animation and scripts from original -->
+  <svg id="mgtm-svg" viewBox="0 0 200 100">
+    <defs>
+      <path id="mgtm-path" d="M 12.5 0
+            c 5 -12.5 -17.5 -17.5 -25 0
+            c 2.5 -6.25 10 -6.25 12.5 0
+            c 2.5 6.25 10 6.25 12.5 0 Z" fill="#d04" stroke="white" stroke-width="0.2px" />
+    </defs>
+    <g id="mgtm-rotator">
+      <g id="mgtm-group" transform="translate(100,50)"></g>
+    </g>
+  </svg>
+
+  <script>
+    const scrollSnap = 10;
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > scrollSnap - 1) {
+        navbar.classList.add('shrink');
+      } else {
+        navbar.classList.remove('shrink');
+      }
+    });
+
+    const rotator = document.getElementById('mgtm-rotator');
+    const o = document.getElementById('mgtm-group');
+
+    const radius = 80;
+    for (let i = 0; i < 16; i++) {
+      let pair = (i % 2 === 1);
+      const angle = i * 360 / 16 - pair * 15;
+      const rad = angle * (Math.PI / 180);
+      const x = radius * Math.cos(rad);
+      const y = radius * Math.sin(rad);
+      let transform = `translate(${x}, ${y}) rotate(${angle + pair * 15}) rotate(${pair * 180})`;
+
+      const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+      use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', '#mgtm-path');
+      use.setAttribute('transform', transform);
+      o.appendChild(use);
+    }
+
+    let lastScrollY = window.scrollY;
+    let rotation = 0;
+
+    window.addEventListener('scroll', () => {
+      const delta = window.scrollY - lastScrollY;
+      rotation -= delta * 0.05;
+      rotator.style.transform = `rotate(${rotation}deg)`;
+      lastScrollY = window.scrollY;
+    });
+  </script>
+
+  <div id="google_translate_element" style="display: none;"></div>
+
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'ja',
+        includedLanguages: 'ja,ko,zh-CN,en'
+      }, 'google_translate_element');
+    }
+    function translateTo(lang) {
+      const select = document.querySelector("select.goog-te-combo");
+      if (select) {
+        select.value = lang;
+        select.dispatchEvent(new Event("change"));
+      }
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>
